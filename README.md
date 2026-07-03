@@ -1,4 +1,4 @@
-# Adriano Diamarante — Site Profissional
+# Adriano Diamarante · Site Profissional
 
 Site institucional de Adriano Diamarante, Psicólogo Clínico (CRP 06/127613).
 Construído em HTML + CSS puros, sem dependências, sem framework.
@@ -7,12 +7,12 @@ Construído em HTML + CSS puros, sem dependências, sem framework.
 
 ```
 .
-├── index.html          # Página única (one-page)
-├── styles.css          # Todo o estilo
+├── index.html              # Página única (one-page)
+├── styles.css              # Todo o estilo
 └── images/
-    ├── photo-hero.png  # Hero (em pé com tablet)
-    ├── photo-about.png # Sobre mim (escrevendo)
-    └── photo-book.png  # Agendar (recostado)
+    ├── photo-hero-new.jpg  # Hero (sentado no sofá)
+    ├── photo-about-new.jpg # Sobre mim (braços cruzados, plantas)
+    └── photo-book.png      # Agendar (recostado)
 ```
 
 ## Como publicar no GitHub Pages
@@ -29,8 +29,8 @@ Para usar um domínio próprio (ex.: `adrianodiamarante.com.br`), siga as instru
 
 ### Trocar tamanhos de título
 No `styles.css`:
-- **Hero** (linha ~85, `.h-hook`) — título "Um espaço para escutar o que pesa"
-- **Agendar** (linha ~95, `.h-display`) — título "Escolha o tempo…"
+- **Hero** (linha ~85, `.h-hook`): título "Um espaço para escutar o que pesa"
+- **Agendar** (linha ~95, `.h-display`): título "Escolha o tempo…"
 - **Mobile do hero** (linha ~862, dentro do `@media (max-width: 640px)`)
 
 ### Trocar fotos
@@ -38,9 +38,9 @@ Substitua os arquivos em `images/` mantendo o mesmo nome. Proporção ideal: **4
 
 ### Trocar links de agendamento ou WhatsApp
 No `index.html`, procure por:
-- `calendar.app.google/eTKFVdGQUsaGByAk8` — sessão de 50 min
-- `calendar.app.google/3KWaMZpDLwRmodFK8` — sessão de 30 min
-- `wa.me/5511957956411` — WhatsApp
+- `calendar.app.google/eTKFVdGQUsaGByAk8`: sessão de 50 min
+- `calendar.app.google/3KWaMZpDLwRmodFK8`: sessão de 30 min
+- `wa.me/5511957956411`: WhatsApp
 
 ### Painel de Tweaks
 O site tem um painel discreto (canto inferior direito) que permite trocar:
