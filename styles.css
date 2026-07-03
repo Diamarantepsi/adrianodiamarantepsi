@@ -18,6 +18,8 @@
   --vv-on-dark:        #F1EFE9;
   --vv-on-dark-fog:    rgba(241, 239, 233, 0.62);
   --vv-on-dark-haze:   rgba(241, 239, 233, 0.22);
+  --vv-on-dark-soft:   rgba(241, 239, 233, 0.82);
+  --vv-teal-soft:      #3a6a80;
 
   /* Type */
   --vv-serif: "Times New Roman", "Tinos", "Liberation Serif", Times, serif;
@@ -40,8 +42,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 body {
   font-family: var(--vv-serif);
   color: var(--vv-teal);
-  background: var(--vv-ice);
-  font-size: 18px;
+  background: var(--vv-teal-ink);
+  font-size: 19px;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -66,7 +68,7 @@ button { font: inherit; cursor: pointer; }
    ========================================================= */
 .eyebrow {
   font-family: var(--vv-serif);
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: var(--tr-eyebrow);
   text-transform: uppercase;
   font-style: normal;
@@ -111,7 +113,7 @@ button { font: inherit; cursor: pointer; }
 }
 .body-prose p {
   margin: 0 0 1em 0;
-  font-size: clamp(17px, 1.18vw, 19px);
+  font-size: clamp(18px, 1.25vw, 20px);
   line-height: 1.65;
   text-wrap: pretty;
 }
@@ -127,7 +129,7 @@ button { font: inherit; cursor: pointer; }
 /* Numeral block */
 .num {
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   color: var(--vv-teal-fog);
 }
@@ -163,7 +165,7 @@ button { font: inherit; cursor: pointer; }
   padding-left: 14px;
   border-left: 1px solid var(--rule-color);
   font-style: normal;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--vv-teal-fog);
@@ -172,8 +174,8 @@ button { font: inherit; cursor: pointer; }
   display: flex;
   gap: clamp(16px, 2.2vw, 32px);
   align-items: center;
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 14px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 .nav-links a {
@@ -191,8 +193,8 @@ button { font: inherit; cursor: pointer; }
   padding: 9px 18px 10px;
   border: 1px solid var(--vv-teal);
   color: var(--vv-teal);
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 14px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: background .2s, color .2s;
 }
@@ -244,8 +246,8 @@ button { font: inherit; cursor: pointer; }
   align-items: baseline;
   margin-top: clamp(48px, 6vw, 76px);
   flex-wrap: wrap;
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 14px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--vv-teal-fog);
 }
@@ -359,7 +361,7 @@ button { font: inherit; cursor: pointer; }
 }
 .section-head .eyebrow .num {
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0;
   text-transform: none;
   color: var(--vv-teal-fog);
@@ -428,8 +430,8 @@ button { font: inherit; cursor: pointer; }
   letter-spacing: -0.01em;
 }
 .signature .title {
-  font-size: 11px;
-  letter-spacing: 0.28em;
+  font-size: 13px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--vv-teal-fog);
 }
@@ -452,8 +454,8 @@ button { font: inherit; cursor: pointer; }
   border-bottom: 1px solid var(--rule-color);
 }
 .format-block .label {
-  font-size: 12px;
-  letter-spacing: 0.28em;
+  font-size: 14px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--vv-teal-fog);
   padding-top: 16px;
@@ -571,8 +573,8 @@ button { font: inherit; cursor: pointer; }
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: clamp(32px, 4vw, 64px);
-  font-size: 12px;
-  letter-spacing: 0.28em;
+  font-size: 14px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--vv-on-dark-fog);
 }
@@ -594,8 +596,8 @@ button { font: inherit; cursor: pointer; }
 }
 .book-card .desc {
   margin-top: clamp(20px, 2.5vw, 32px);
-  font-size: clamp(15px, 1.05vw, 17px);
-  line-height: 1.55;
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.6;
   color: var(--vv-on-dark-fog);
   max-width: 22em;
 }
@@ -605,8 +607,8 @@ button { font: inherit; cursor: pointer; }
   align-items: baseline;
   gap: 14px;
   padding-top: clamp(28px, 3vw, 40px);
-  font-size: 12px;
-  letter-spacing: 0.28em;
+  font-size: 14px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--vv-on-dark);
 }
@@ -625,8 +627,8 @@ button { font: inherit; cursor: pointer; }
   flex-wrap: wrap;
   align-items: center;
   gap: 24px 36px;
-  font-size: 13px;
-  letter-spacing: 0.22em;
+  font-size: 14px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--vv-on-dark-fog);
 }
@@ -771,8 +773,8 @@ button { font: inherit; cursor: pointer; }
   text-align: left;
 }
 .final-eyebrow {
-  font-size: 13px;
-  letter-spacing: 0.28em;
+  font-size: 14px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--vv-on-dark-fog);
   margin-bottom: clamp(28px, 3.5vw, 48px);
@@ -803,8 +805,8 @@ button { font: inherit; cursor: pointer; }
   align-items: center;
   gap: 12px;
   padding: 16px 26px 17px;
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 14px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: background .2s, color .2s, border-color .2s, transform .2s;
   border: 1px solid currentColor;
@@ -847,15 +849,15 @@ button { font: inherit; cursor: pointer; }
   margin-bottom: clamp(56px, 6vw, 80px);
 }
 .foot-grid h4 {
-  font-size: 11px;
-  letter-spacing: 0.28em;
+  font-size: 13px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--vv-on-dark-fog);
   margin: 0 0 18px 0;
   font-weight: 400;
 }
 .foot-grid p, .foot-grid a {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
   color: var(--vv-on-dark);
   display: block;
@@ -877,8 +879,8 @@ button { font: inherit; cursor: pointer; }
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px 24px;
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--vv-on-dark-fog);
 }
@@ -892,7 +894,7 @@ button { font: inherit; cursor: pointer; }
    Mobile refinements (≤ 640px phones)
    ========================================================= */
 @media (max-width: 640px) {
-  body { font-size: 17px; }
+  body { font-size: 18px; }
   html { scroll-padding-top: 70px; }
 
   /* Nav: only brand initials + CTA */
@@ -913,8 +915,8 @@ button { font: inherit; cursor: pointer; }
   .hero-title { font-size: clamp(32px, 8.2vw, 48px); margin-bottom: 22px; }
   .hero-eyebrow { margin-bottom: 20px; }
   .hero-welcome { margin-bottom: 24px; }
-  .hero-welcome .hello { font-size: 18px; margin-bottom: 10px; }
-  .hero-welcome p { font-size: 16px; line-height: 1.55; }
+  .hero-welcome .hello { font-size: 19px; margin-bottom: 10px; }
+  .hero-welcome p { font-size: 17px; line-height: 1.55; }
   .hero-meta { gap: 14px 24px; margin-top: 28px; font-size: 11px; letter-spacing: 0.18em; }
   .hero-actions { margin-top: 22px; gap: 10px 12px; }
   .hero-actions .btn { padding: 12px 18px 13px; font-size: 11px; letter-spacing: 0.18em; }
@@ -942,7 +944,7 @@ button { font: inherit; cursor: pointer; }
   .book-card .top { margin-bottom: 28px; font-size: 11px; letter-spacing: 0.2em; }
   .book-card .num-big { font-size: clamp(56px, 16vw, 88px); }
   .book-card .num-big .unit { font-size: 16px; margin-top: 8px; }
-  .book-card .desc { margin-top: 16px; font-size: 14px; }
+  .book-card .desc { margin-top: 16px; font-size: 16px; }
   .book-card .go { padding-top: 22px; font-size: 11px; letter-spacing: 0.2em; }
   .book-aside { margin-top: 28px; gap: 16px 22px; font-size: 11px; letter-spacing: 0.18em; }
 
@@ -1117,3 +1119,160 @@ body[data-theme="dark"] .tw-seg button.active { background: var(--vv-on-dark); c
 
 /* Selection */
 ::selection { background: var(--vv-teal); color: var(--vv-ice); }
+
+/* =========================================================
+   VERTICAL TONE FLOW — escuro no topo → claro na base
+   (aplica-se ao tema padrão; o tema "escuro" do painel
+    de ajustes continua intacto pois é escopado a [light])
+   Degradê:  nav/hero  #0B3A4E  (mais escuro)
+             #sobre    #145470
+             #formato  #0F6C8D
+             agendar   #E8E6E0  (vira claro)
+             final     #F0F0F0
+             rodapé    #F6F6F4  (mais claro)
+   ========================================================= */
+
+/* ---------- NAV (escuro) ---------- */
+body[data-theme="light"] .nav {
+  background: color-mix(in srgb, var(--vv-teal-ink) 90%, transparent);
+  border-bottom-color: var(--vv-on-dark-haze);
+}
+body[data-theme="light"] .brand { color: var(--vv-on-dark); }
+body[data-theme="light"] .brand small {
+  color: var(--vv-on-dark-soft);
+  border-left-color: var(--vv-on-dark-haze);
+}
+body[data-theme="light"] .nav-links a { color: var(--vv-on-dark); }
+body[data-theme="light"] .nav-cta { border-color: var(--vv-on-dark); color: var(--vv-on-dark); }
+body[data-theme="light"] .nav-cta:hover { background: var(--vv-on-dark); color: var(--vv-teal-ink); }
+
+/* ---------- HERO (mais escuro) ---------- */
+body[data-theme="light"] .hero {
+  background: var(--vv-teal-ink);
+  color: var(--vv-on-dark);
+}
+body[data-theme="light"] .hero .eyebrow { color: var(--vv-on-dark); }
+body[data-theme="light"] .hero .hero-title,
+body[data-theme="light"] .hero .hero-welcome .hello { color: var(--vv-on-dark); }
+body[data-theme="light"] .hero .hero-welcome p { color: var(--vv-on-dark); }
+body[data-theme="light"] .hero .hero-meta { color: var(--vv-on-dark-soft); }
+body[data-theme="light"] .hero .hero-meta .em-rule { color: var(--vv-on-dark); }
+body[data-theme="light"] .hero .hero-portrait { background: rgba(255,255,255,0.04); }
+/* Botões do hero: eram para fundo claro → invertidos p/ fundo escuro */
+body[data-theme="light"] .hero .btn.btn-light {
+  color: var(--vv-on-dark);
+  border-color: rgba(241,239,233,0.5);
+}
+body[data-theme="light"] .hero .btn.btn-light:hover {
+  background: var(--vv-on-dark);
+  color: var(--vv-teal-ink);
+  border-color: var(--vv-on-dark);
+}
+body[data-theme="light"] .hero .btn.btn-light.solid-light {
+  background: var(--vv-on-dark);
+  color: var(--vv-teal-ink);
+  border-color: var(--vv-on-dark);
+}
+body[data-theme="light"] .hero .btn.btn-light.solid-light:hover {
+  background: transparent;
+  color: var(--vv-on-dark);
+  border-color: rgba(241,239,233,0.5);
+}
+
+/* ---------- SOBRE (escuro médio #145470) ---------- */
+body[data-theme="light"] #sobre {
+  background: var(--vv-teal);
+  color: var(--vv-on-dark);
+}
+body[data-theme="light"] #sobre .eyebrow { color: var(--vv-on-dark); }
+body[data-theme="light"] #sobre .section-head .eyebrow .num { color: var(--vv-on-dark-soft); }
+body[data-theme="light"] #sobre .rule-track { background: var(--vv-on-dark-haze); }
+body[data-theme="light"] #sobre .h-section { color: var(--vv-on-dark); }
+body[data-theme="light"] #sobre .about-cols,
+body[data-theme="light"] #sobre .about-cols p { color: var(--vv-on-dark); }
+body[data-theme="light"] #sobre .about-portrait { background: rgba(255,255,255,0.05); }
+body[data-theme="light"] #sobre .signature { border-top-color: var(--vv-on-dark-haze); }
+body[data-theme="light"] #sobre .signature .name { color: var(--vv-on-dark); }
+body[data-theme="light"] #sobre .signature .title { color: var(--vv-on-dark-soft); }
+
+/* ---------- FORMATO (transição #0F6C8D) ---------- */
+body[data-theme="light"] #formato {
+  background: var(--vv-teal-deep);
+  color: var(--vv-on-dark);
+}
+body[data-theme="light"] #formato .eyebrow { color: var(--vv-on-dark); }
+body[data-theme="light"] #formato .section-head .eyebrow .num { color: var(--vv-on-dark-soft); }
+body[data-theme="light"] #formato .rule-track { background: var(--vv-on-dark-haze); }
+body[data-theme="light"] #formato .format-block { border-bottom-color: var(--vv-on-dark-haze); }
+body[data-theme="light"] #formato .format-block .label { color: var(--vv-on-dark-soft); }
+body[data-theme="light"] #formato .format-block .quote { color: var(--vv-on-dark); }
+
+/* ---------- AGENDAR (vira CLARO — papel) ---------- */
+body[data-theme="light"] .book {
+  background: var(--vv-paper);
+  color: var(--vv-teal);
+}
+body[data-theme="light"] .book .eyebrow { color: var(--vv-teal); }
+body[data-theme="light"] .book .section-head .eyebrow .num { color: var(--vv-teal-soft); }
+body[data-theme="light"] .book .section-head .rule-track { background: var(--rule-color); }
+body[data-theme="light"] .book-intro h2 { color: var(--vv-teal); }
+body[data-theme="light"] .book-intro p { color: var(--vv-teal); }
+body[data-theme="light"] .book-portrait { background: var(--vv-paper); }
+body[data-theme="light"] .book-card {
+  border-color: var(--vv-teal-haze);
+  color: var(--vv-teal);
+}
+body[data-theme="light"] .book-card:hover {
+  background: var(--vv-teal-dust);
+  border-color: var(--vv-teal-fog);
+}
+body[data-theme="light"] .book-card .top { color: var(--vv-teal-soft); }
+body[data-theme="light"] .book-card .num-big .unit { color: var(--vv-teal-soft); }
+body[data-theme="light"] .book-card .desc { color: var(--vv-teal); }
+body[data-theme="light"] .book-card .go { color: var(--vv-teal); }
+body[data-theme="light"] .book-aside { color: var(--vv-teal-soft); }
+body[data-theme="light"] .book-aside .wa {
+  color: var(--vv-teal);
+  border-bottom-color: var(--vv-teal-haze);
+}
+body[data-theme="light"] .book-aside .wa:hover { border-bottom-color: var(--vv-teal); }
+
+/* ---------- FINAL CTA (claro #F0F0F0) ---------- */
+body[data-theme="light"] .final {
+  background: var(--vv-ice);
+  color: var(--vv-teal);
+}
+body[data-theme="light"] .final-eyebrow { color: var(--vv-teal-soft); }
+body[data-theme="light"] .final-eyebrow .em-rule { background: var(--vv-teal); }
+body[data-theme="light"] .final h2 { color: var(--vv-teal); }
+body[data-theme="light"] .final .btn.solid {
+  background: var(--vv-teal);
+  color: var(--vv-on-dark);
+  border-color: var(--vv-teal);
+}
+body[data-theme="light"] .final .btn.solid:hover {
+  background: transparent;
+  color: var(--vv-teal);
+}
+body[data-theme="light"] .final .btn.ghost {
+  color: var(--vv-teal);
+  border-color: var(--vv-teal-haze);
+}
+body[data-theme="light"] .final .btn.ghost:hover {
+  border-color: var(--vv-teal);
+  background: var(--vv-teal-dust);
+}
+
+/* ---------- RODAPÉ (mais claro #F6F6F4) ---------- */
+body[data-theme="light"] .foot {
+  background: var(--vv-ice-pure);
+  color: var(--vv-teal);
+}
+body[data-theme="light"] .foot-grid h4 { color: var(--vv-teal-soft); }
+body[data-theme="light"] .foot-grid p,
+body[data-theme="light"] .foot-grid a { color: var(--vv-teal); }
+body[data-theme="light"] .foot-brand .name { color: var(--vv-teal); }
+body[data-theme="light"] .foot-bottom {
+  border-top-color: var(--rule-color);
+  color: var(--vv-teal-soft);
+}
