@@ -3,14 +3,799 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Adriano Diamarante · Psicólogo Clínico · Fenomenologia Existencial</title>
-<meta name="description" content="Atendimento psicológico online com Adriano Diamarante. Escuta atenta sob a perspectiva da Fenomenologia Existencial. Agende sua sessão de 30 ou 50 minutos pela agenda do Google.">
-<link rel="stylesheet" href="styles.css">
+<title>Adriano Diamarante · Psicólogo · Abordagem Existencial</title>
+<meta name="description" content="Psicoterapia online de abordagem existencial com Adriano Diamarante (CRP 06/127613). Para quem vive crises de sentido e busca uma vida que seja, de fato, sua. Sessões de 30 ou 50 minutos pelo Google Meet.">
+<meta property="og:title" content="Adriano Diamarante · Psicólogo · Abordagem Existencial">
+<meta property="og:description" content="Um espaço para escutar o que pesa. Psicoterapia online de abordagem existencial — crises de sentido e autenticidade.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adrianodiamarantepsi.com">
+<meta property="og:image" content="https://adrianodiamarantepsi.com/images/photo-hero-new.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/split-type"></script>
+
+<style>
+/* ============ TOKENS ============ */
+:root {
+  --bg: #141814;
+  --bg-elevated: #1C221C;
+  --surface: #242B24;
+  --text: #EDE8DC;
+  --muted: rgba(237, 232, 220, 0.62);
+  --faint: rgba(237, 232, 220, 0.38);
+  --accent: #C9A96E;
+  --sage: #7D8F74;
+  --hairline: rgba(237, 232, 220, 0.14);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Newsreader', Georgia, serif;
+}
+
+/* ============ BASE ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+img {
+  max-width: 100%;
+  display: block;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--bg-elevated) 100%);
+  min-height: 200px;
+}
+
+a { color: inherit; }
+
+.wrap {
+  width: min(1200px, 100% - 48px);
+  margin-inline: auto;
+}
+
+section { padding-block: 60px; }
+@media (min-width: 768px) { section { padding-block: 96px; } }
+@media (min-width: 1024px) { section { padding-block: 140px; } }
+
+/* ============ TIPOGRAFIA ============ */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 300; }
+
+h1 em, h2 em, h3 em, .t-em {
+  font-style: italic;
+  font-weight: 200;
+  color: var(--accent);
+}
+
+.h-display {
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.h-section {
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.eyebrow .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--accent);
+  letter-spacing: 0;
+}
+
+.body-text p { color: var(--muted); max-width: 62ch; }
+.body-text p + p { margin-top: 24px; }
+.body-text p strong { color: var(--text); font-weight: 400; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  padding-block: 20px;
+  transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), padding 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: rgba(20, 24, 20, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--hairline);
+  padding-block: 14px;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.125rem;
+}
+
+.brand small {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.nav-links {
+  display: none;
+  gap: 32px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  position: relative;
+  transition: color 0.3s var(--ease);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease);
+}
+
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.nav .nav-cta { display: none; }
+
+@media (min-width: 1024px) {
+  .nav-links { display: flex; }
+  .nav .nav-cta { display: inline-flex; }
+  .nav .nav-burger { display: none; }
+}
+
+.nav-burger {
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease);
+}
+
+.nav-burger:hover { border-color: var(--sage); }
+
+.nav-burger svg { color: var(--text); width: 20px; height: 20px; }
+
+/* menu mobile */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s var(--ease), visibility 0.45s;
+}
+
+.menu-overlay.open { opacity: 1; visibility: visible; }
+
+.menu-overlay a {
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 200;
+  font-size: clamp(2rem, 8vw, 3rem);
+  padding-block: 16px;
+  border-bottom: 1px solid var(--hairline);
+  transition: color 0.3s var(--ease), padding-left 0.3s var(--ease);
+}
+
+.menu-overlay a:hover { color: var(--accent); padding-left: 12px; }
+
+.menu-overlay .menu-note {
+  margin-top: 40px;
+  font-size: 0.8125rem;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============ BOTÕES ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  color: var(--text);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.btn .arrow { transition: transform 0.3s var(--ease); }
+
+.btn:hover { border-color: var(--sage); transform: translateY(-2px); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+.btn-solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  font-weight: 400;
+}
+
+.btn-solid:hover {
+  background: #D6BA85;
+  border-color: #D6BA85;
+  transform: translateY(-2px);
+}
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 120px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid { grid-template-columns: 55fr 45fr; gap: 64px; }
+}
+
+.hero-visual { order: -1; }
+
+@media (min-width: 1024px) {
+  .hero-visual { order: 1; }
+}
+
+.hero-portrait {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.hero-portrait img {
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: saturate(0.88);
+}
+
+@media (min-width: 1024px) {
+  .hero-portrait img { height: min(72vh, 640px); }
+}
+
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 24, 20, 0.35), transparent 45%);
+  pointer-events: none;
+}
+
+.hero-eyebrow { margin-bottom: 28px; }
+.hero-eyebrow .dot { color: var(--accent); }
+
+.hero h1 { margin-bottom: 32px; }
+
+.hero-welcome { max-width: 46ch; margin-bottom: 40px; }
+
+.hero-welcome .hello {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 200;
+  font-size: 1.25rem;
+  display: block;
+  margin-bottom: 12px;
+  color: var(--accent);
+}
+
+.hero-welcome p { color: var(--muted); }
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.hero-meta .rule {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+/* ============ SEÇÕES — CABEÇALHO ============ */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+@media (min-width: 1024px) {
+  .section-head { margin-bottom: 80px; }
+}
+
+.section-head .rule-track {
+  flex: 1;
+  height: 1px;
+  background: var(--hairline);
+}
+
+/* ============ MANIFESTO (pin + scrub) ============ */
+.manifesto {
+  background: var(--bg-elevated);
+  border-block: 1px solid var(--hairline);
+}
+
+.manifesto-stage { position: relative; }
+
+.m-phrase {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(1.9rem, 5.5vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-align: center;
+  max-width: 18ch;
+  margin-inline: auto;
+}
+
+.m-phrase + .m-phrase { margin-top: 48px; }
+
+.m-phrase em { font-style: italic; color: var(--accent); }
+
+.m-final {
+  font-size: clamp(1.5rem, 3.6vw, 3rem);
+  max-width: 26ch;
+  color: var(--muted);
+}
+
+.m-final em { color: var(--accent); }
+
+.manifesto-eyebrow {
+  justify-content: center;
+  margin-bottom: 56px;
+}
+
+/* layout pinado só é aplicado quando o JS confirma desktop + GSAP */
+.manifesto-pinned .manifesto-stage {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.manifesto-pinned .m-phrase {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  width: 100%;
+  padding-inline: 24px;
+}
+
+.manifesto-pinned .manifesto-eyebrow {
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* ============ SOBRE ============ */
+.about-grid {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .about-grid { grid-template-columns: 42fr 58fr; gap: 80px; }
+}
+
+.about-portrait {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.about-portrait img {
+  width: 100%;
+  height: 48vh;
+  object-fit: cover;
+  filter: saturate(0.88);
+  transition: transform 0.8s var(--ease);
+}
+
+@media (min-width: 1024px) {
+  .about-portrait img { height: min(64vh, 560px); }
+}
+
+.about-portrait:hover img { transform: scale(1.03); }
+
+.about-text h2 { margin-bottom: 36px; }
+
+.signature { margin-top: 48px; }
+
+.signature .name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 200;
+  font-size: 1.5rem;
+}
+
+.signature .title {
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ============ COMO FUNCIONA ============ */
+.steps {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+
+.step {
+  padding: 40px 32px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.step:hover { border-color: var(--sage); transform: translateY(-4px); }
+
+.step .step-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 200;
+  font-size: 2.5rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.step h3 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  margin-bottom: 16px;
+}
+
+.step p { color: var(--muted); font-size: 1rem; }
+
+/* ============ FORMATO E VALORES ============ */
+.formato { background: var(--bg-elevated); border-block: 1px solid var(--hairline); }
+
+.price-grid {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .price-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+
+.price-card {
+  padding: 48px 40px;
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.price-card:hover { border-color: var(--sage); transform: translateY(-4px); }
+
+.price-card .duration {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.price-card .value {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.price-card .value em { font-style: italic; color: var(--accent); }
+
+.price-card .per {
+  font-size: 0.9375rem;
+  color: var(--faint);
+  display: block;
+  margin-bottom: 24px;
+}
+
+.price-card p { color: var(--muted); font-size: 1rem; }
+
+.price-card .btn { margin-top: 32px; }
+
+.format-meta {
+  display: grid;
+  gap: 16px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .format-meta { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+}
+
+.format-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.format-item svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--sage);
+  margin-top: 2px;
+}
+
+.format-note {
+  margin-top: 40px;
+  font-size: 0.9375rem;
+  color: var(--faint);
+  font-style: italic;
+  max-width: 60ch;
+}
+
+/* ============ AGENDAMENTO ============ */
+.agendar { text-align: center; }
+
+.agendar h2 {
+  max-width: 16ch;
+  margin-inline: auto;
+  margin-bottom: 24px;
+}
+
+.agendar .sub {
+  color: var(--muted);
+  max-width: 46ch;
+  margin-inline: auto;
+  margin-bottom: 48px;
+}
+
+.agendar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ============ FAQ ============ */
+.faq-list {
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 28px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  transition: color 0.3s var(--ease);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary:hover { color: var(--accent); }
+
+.faq-item summary .plus {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--sage);
+  transition: transform 0.4s var(--ease);
+}
+
+.faq-item[open] summary .plus { transform: rotate(45deg); }
+
+.faq-item .faq-body {
+  padding-bottom: 32px;
+  color: var(--muted);
+  max-width: 64ch;
+}
+
+.faq-item .faq-body p + p { margin-top: 16px; }
+
+/* ============ FOOTER ============ */
+.footer {
+  border-top: 1px solid var(--hairline);
+  padding-block: 60px 40px;
+  background: var(--bg-elevated);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 40px;
+  margin-bottom: 56px;
+}
+
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
+}
+
+.footer .brand-foot em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.375rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer .brand-foot span {
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.footer h4 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 20px;
+}
+
+.footer ul { list-style: none; }
+
+.footer ul li + li { margin-top: 12px; }
+
+.footer ul a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  transition: color 0.3s var(--ease);
+}
+
+.footer ul a:hover { color: var(--accent); }
+
+.footer-crisis {
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  padding: 24px 28px;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.footer-crisis strong { color: var(--text); font-weight: 400; }
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.8125rem;
+  color: var(--faint);
+}
+
+/* ============ ACESSIBILIDADE ============ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
 </head>
-<body data-theme="light">
+<body>
 
   <!-- ========== NAV ========== -->
-  <nav class="nav" data-screen-label="00 Nav">
+  <nav class="nav" id="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#topo">
         <em>Adriano Diamarante</em>
@@ -18,68 +803,98 @@
       </a>
       <div class="nav-links">
         <a href="#sobre">Sobre</a>
-        <a href="#formato">Formato</a>
-        <a href="#book-cards">Agendar</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#valores">Valores</a>
+        <a href="#faq">Dúvidas</a>
       </div>
-      <a class="nav-cta" href="#book-cards">Agendar <span class="arrow">→</span></a>
+      <a class="btn btn-solid nav-cta" href="#agendar">Agendar <span class="arrow">→</span></a>
+      <button class="nav-burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 8h16M4 16h16"/>
+        </svg>
+      </button>
     </div>
   </nav>
 
-  <main class="page" id="topo">
+  <div class="menu-overlay" id="menu">
+    <a href="#sobre">Sobre</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#valores">Valores</a>
+    <a href="#faq">Dúvidas</a>
+    <a href="#agendar">Agendar</a>
+    <span class="menu-note">Psicologia clínica · Abordagem existencial</span>
+  </div>
+
+  <main id="topo">
 
     <!-- ========== HERO ========== -->
-    <section class="hero" data-screen-label="01 Hero">
+    <section class="hero">
       <div class="wrap">
         <div class="hero-grid">
-          <div class="hero-left">
+          <div class="hero-content">
             <div class="eyebrow hero-eyebrow">
               Psicologia clínica <span class="dot">·</span> Atendimento online
             </div>
 
-            <h1 class="h-hook hero-title">
+            <h1 class="h-display hero-title">
               <em>Um espaço</em><br>
               para escutar<br>
               <em>o que pesa.</em>
             </h1>
 
             <div class="hero-welcome">
-              <span class="hello"><em>Olá. Seja muito bem-vinda(o).</em></span>
-              <p>Dar o primeiro passo para cuidar da sua saúde mental é uma decisão valiosa. E este é um espaço onde ela pode acontecer no seu tempo.</p>
+              <span class="hello">Olá. Seja muito bem-vinda(o).</span>
+              <p>Psicoterapia de abordagem existencial, para quem sente uma distância crescente entre quem é e o que faz da própria vida — e quer, no seu tempo, encarar isso.</p>
             </div>
 
             <div class="hero-actions">
-              <a class="btn btn-light solid-light" href="https://calendar.app.google/eTKFVdGQUsaGByAk8" target="_blank" rel="noopener">
+              <a class="btn btn-solid" href="https://calendar.app.google/eTKFVdGQUsaGByAk8" target="_blank" rel="noopener">
                 Agendar 50 min <span class="arrow">→</span>
               </a>
-              <a class="btn btn-light" href="https://calendar.app.google/3KWaMZpDLwRmodFK8" target="_blank" rel="noopener">
+              <a class="btn" href="https://calendar.app.google/3KWaMZpDLwRmodFK8" target="_blank" rel="noopener">
                 Agendar 30 min <span class="arrow">→</span>
               </a>
-              <a class="btn btn-light" href="https://wa.me/5511957956411?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+              <a class="btn" href="https://wa.me/5511957956411?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20agendar%20uma%20consulta." target="_blank" rel="noopener">
                 WhatsApp <span class="arrow">→</span>
               </a>
             </div>
 
             <div class="hero-meta">
-              <span><span class="em-rule"></span>&nbsp;&nbsp;Fenomenologia Existencial</span>
+              <span><span class="rule"></span>Abordagem existencial</span>
               <span>Sessões por Google Meet</span>
             </div>
           </div>
 
-          <div class="hero-right">
+          <div class="hero-visual">
             <figure class="hero-portrait">
-              <img src="images/photo-hero-new.jpg" alt="Adriano Diamarante sentado em um sofá, sorrindo, com parede verde ao fundo.">
+              <img src="images/photo-hero-new.jpg" alt="Adriano Diamarante sentado em um sofá, sorrindo, com parede verde ao fundo." fetchpriority="high">
             </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== SOBRE MIM ========== -->
-    <section class="section" id="sobre" data-screen-label="02 Sobre">
+    <!-- ========== MANIFESTO (pin + scrub) ========== -->
+    <section class="manifesto" id="manifesto">
+      <div class="manifesto-stage">
+        <div class="eyebrow manifesto-eyebrow">
+          <span class="num"><em>01</em></span>
+          <span>Com o que eu trabalho</span>
+        </div>
+
+        <p class="m-phrase m-1">Há quanto tempo você vive <em>por inércia?</em></p>
+        <p class="m-phrase m-2">Pelo que os outros <em>esperam.</em></p>
+        <p class="m-phrase m-3">Pelo medo de <em>decepcionar.</em></p>
+        <p class="m-phrase m-final">Terapia é aprender a se olhar com honestidade suficiente para fazer escolhas que sejam, <em>de fato, suas.</em></p>
+      </div>
+    </section>
+
+    <!-- ========== SOBRE ========== -->
+    <section id="sobre">
       <div class="wrap">
         <header class="section-head">
           <div class="eyebrow">
-            <span class="num"><em>01</em></span>
+            <span class="num"><em>02</em></span>
             <span>Sobre mim</span>
           </div>
           <div class="rule-track" aria-hidden="true"></div>
@@ -87,283 +902,382 @@
 
         <div class="about-grid">
           <figure class="about-portrait">
-            <img src="images/photo-about-new.jpg" alt="Adriano Diamarante em pé, de braços cruzados, sorrindo, em meio a plantas.">
+            <img src="images/photo-about-new.jpg" alt="Adriano Diamarante em pé, de braços cruzados, sorrindo, em meio a plantas." loading="lazy">
           </figure>
 
-          <div class="about-text body-prose">
-            <h2 class="h-section" style="margin-bottom: clamp(28px, 3vw, 44px);">
-              <em>Eu te escuto<br>sem rótulo,<br>sem pressa.</em>
-            </h2>
+          <div class="about-text body-text">
+            <h2 class="h-section"><em>Eu te escuto<br>sem rótulo,<br>sem pressa.</em></h2>
 
-            <div class="about-cols">
-              <p>Eu trabalho com a <em>Fenomenologia Existencial</em>. Diferente de outras abordagens, o meu foco não é te dar um “diagnóstico” ou rótulo, mas sim compreender como você percebe o mundo e como lida com a sua liberdade e escolhas.</p>
-              <p>O processo pode despertar sentimentos desconfortáveis, mas eles fazem parte do crescimento e da resolução de questões. A duração varia e, embora a alta seja decidida em conjunto, você é livre para encerrar a terapia quando desejar, sem pressão.</p>
-            </div>
+            <p>Trabalho na perspectiva da <strong>psicologia existencial</strong>. Diferente de outras abordagens, meu foco não é te dar um diagnóstico ou uma lista de técnicas para aplicar — é um espaço para você entender o que está acontecendo com você: o que quer de verdade, o que tem te travado, o que faz ou não faz sentido na sua vida.</p>
+
+            <p>Meu interesse central está nos processos em que a gente se afasta de si mesmo — quando as convenções e as expectativas dos outros vão substituindo as escolhas genuínas. A terapia é a possibilidade de reorientação a partir do encontro: <strong>a conversa é o principal instrumento</strong>.</p>
+
+            <p>O processo pode despertar sentimentos desconfortáveis, e eles fazem parte do crescimento. A duração varia, a alta é construída em conjunto — e você é livre para encerrar quando desejar, sem pressão.</p>
 
             <div class="signature">
-              <h3 class="name"><em>Adriano Diamarante</em></h3>
-              <span class="title">Psicólogo &nbsp;·&nbsp; CRP 06/127613</span>
+              <h3 class="name">Adriano Diamarante</h3>
+              <span class="title">Psicólogo · CRP 06/127613</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== FORMATO DAS SESSÕES ========== -->
-    <section class="section tight" id="formato" data-screen-label="03 Formato">
-      <div class="wrap">
-        <header class="section-head">
-          <div class="eyebrow">
-            <span class="num"><em>02</em></span>
-            <span>Formato das sessões</span>
-          </div>
-          <div class="rule-track" aria-hidden="true"></div>
-        </header>
-
-        <div class="format-block">
-          <span class="label">Onde</span>
-          <p class="quote">
-            Os atendimentos são realizados por <strong>videochamada através do Google Meet</strong>. O link de acesso à sala é enviado para você <em>30&nbsp;minutos antes</em> do horário agendado.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== AGENDAR (DARK SECTION) ========== -->
-    <section class="section book" id="agendar" data-screen-label="04 Agendar">
+    <!-- ========== COMO FUNCIONA ========== -->
+    <section id="como-funciona">
       <div class="wrap">
         <header class="section-head">
           <div class="eyebrow">
             <span class="num"><em>03</em></span>
-            <span>Agendar uma sessão</span>
+            <span>Como funciona</span>
           </div>
           <div class="rule-track" aria-hidden="true"></div>
         </header>
 
-        <div class="book-grid">
-          <div class="book-intro">
-            <h2 class="h-display">
-              <em>Escolha o tempo<br>que cabe em você,<br>e marque</em> direto<br>na minha agenda.
-            </h2>
-            <p>A reserva é feita pela Agenda do Google: você escolhe um horário livre, confirma e recebe o convite com o link da sala automaticamente.</p>
-          </div>
-          <figure class="book-portrait">
-            <img src="images/photo-book.png" alt="Adriano Diamarante recostado em sofá, segurando um tablet.">
-          </figure>
-        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-num">01</span>
+            <h3>Um primeiro encontro</h3>
+            <p>A primeira sessão é um encontro, não um compromisso. Você me conta o que está vivendo — do jeito que vier, sem precisar organizar muito — e a gente vê, juntos, se faz sentido seguir.</p>
+          </article>
 
-        <!-- Two booking cards -->
-        <div class="book-cards" id="book-cards">
-          <a class="book-card" href="https://calendar.app.google/eTKFVdGQUsaGByAk8" target="_blank" rel="noopener">
-            <div class="top">
-              <span>Sessão padrão</span>
-              <span><em>I</em></span>
-            </div>
-            <p class="num-big">50<span class="unit"><em>minutos</em></span></p>
-            <p class="desc">Sessão padrão de psicoterapia. Permite maior aprofundamento e desenvolvimento das questões trazidas.</p>
-            <span class="go">Agendar 50 min <span class="arrow">→</span></span>
-          </a>
+          <article class="step">
+            <span class="step-num">02</span>
+            <h3>Tempo pra decidir</h3>
+            <p>A continuidade não se decide na hora. Você leva dois dias para sentir como saiu da conversa e me diz se quer dar sequência. Sem pressa e sem cobrança — a decisão é sua.</p>
+          </article>
 
-          <a class="book-card" href="https://calendar.app.google/3KWaMZpDLwRmodFK8" target="_blank" rel="noopener">
-            <div class="top">
-              <span>Sessão breve</span>
-              <span><em>II</em></span>
-            </div>
-            <p class="num-big">30<span class="unit"><em>minutos</em></span></p>
-            <p class="desc">Sessão focada e objetiva. Ideal para demandas pontuais ou rotinas muito corridas.</p>
-            <span class="go">Agendar 30 min <span class="arrow">→</span></span>
-          </a>
-        </div>
-
-        <div class="book-aside">
-          <span><span class="em-rule" style="background: var(--vv-teal); width: 56px;"></span>&nbsp;&nbsp;Prefere conversar antes?</span>
-          <a class="wa" href="https://wa.me/5511957956411?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20agendar%20uma%20consulta." target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            <span>Falar pelo WhatsApp</span>
-          </a>
+          <article class="step">
+            <span class="step-num">03</span>
+            <h3>Um processo seu</h3>
+            <p>As sessões costumam ser semanais, online, pelo Google Meet. A frequência a gente define em conjunto — e o processo caminha no ritmo do que você traz para cada conversa.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ========== FINAL CTA ========== -->
-    <section class="final" data-screen-label="07 CTA Final">
+    <!-- ========== FORMATO E VALORES ========== -->
+    <section class="formato" id="valores">
       <div class="wrap">
-        <div class="final-eyebrow">
-          <span class="em-rule"></span>
-          <span>Pronta(o) para começar?</span>
+        <header class="section-head">
+          <div class="eyebrow">
+            <span class="num"><em>04</em></span>
+            <span>Formato e valores</span>
+          </div>
+          <div class="rule-track" aria-hidden="true"></div>
+        </header>
+
+        <div class="price-grid">
+          <article class="price-card">
+            <span class="duration">Sessão de 30 minutos</span>
+            <span class="value">R$ <em>50</em></span>
+            <span class="per">por sessão</span>
+            <p>Uma conversa mais breve e focada. Boa porta de entrada para conhecer o processo, ou para acompanhamentos que pedem encontros mais curtos.</p>
+            <a class="btn" href="https://calendar.app.google/3KWaMZpDLwRmodFK8" target="_blank" rel="noopener">Agendar 30 min <span class="arrow">→</span></a>
+          </article>
+
+          <article class="price-card">
+            <span class="duration">Sessão de 50 minutos</span>
+            <span class="value">a partir de R$ <em>90</em></span>
+            <span class="per">valor conversado conforme a sua situação</span>
+            <p>O formato completo da psicoterapia: tempo para aprofundar o que você traz, com espaço para os silêncios e desdobramentos que a conversa pede.</p>
+            <a class="btn btn-solid" href="https://calendar.app.google/eTKFVdGQUsaGByAk8" target="_blank" rel="noopener">Agendar 50 min <span class="arrow">→</span></a>
+          </article>
         </div>
-        <h2>
-          <em>Cuidar de si</em><br>
-          começa com<br>
-          <em>uma conversa.</em>
-        </h2>
-        <div class="final-actions">
-          <a class="btn solid" href="https://calendar.app.google/eTKFVdGQUsaGByAk8" target="_blank" rel="noopener">
-            Agendar 50 min <span class="arrow">→</span>
+
+        <div class="format-meta">
+          <div class="format-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M15 10l4.55-2.28A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.9L15 14M3 7a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>
+            </svg>
+            <span>Online, pelo Google Meet — o link chega 1h antes da sessão</span>
+          </div>
+          <div class="format-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+            </svg>
+            <span>Frequência semanal, definida em conjunto</span>
+          </div>
+          <div class="format-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/>
+            </svg>
+            <span>Cancelamento com 24h de antecedência</span>
+          </div>
+          <div class="format-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7l7-4z"/>
+            </svg>
+            <span>Sigilo conforme o CFP e proteção de dados pela LGPD</span>
+          </div>
+        </div>
+
+        <p class="format-note">Pagamento por PIX, antes da sessão. Se o valor for um obstáculo, me conta um pouco da sua situação — a gente conversa sobre o que funciona para você.</p>
+      </div>
+    </section>
+
+    <!-- ========== AGENDAMENTO ========== -->
+    <section class="agendar" id="agendar">
+      <div class="wrap">
+        <h2 class="h-section">Dar o primeiro passo, <em>no seu tempo.</em></h2>
+        <p class="sub">Cuidar da saúde mental é uma decisão valiosa — e este é um espaço onde ela pode acontecer sem pressa. Escolha o caminho que fizer mais sentido agora.</p>
+        <div class="agendar-actions">
+          <a class="btn btn-solid" href="https://calendar.app.google/eTKFVdGQUsaGByAk8" target="_blank" rel="noopener">
+            Agendar sessão de 50 min <span class="arrow">→</span>
           </a>
-          <a class="btn ghost" href="https://calendar.app.google/3KWaMZpDLwRmodFK8" target="_blank" rel="noopener">
+          <a class="btn" href="https://calendar.app.google/3KWaMZpDLwRmodFK8" target="_blank" rel="noopener">
             Agendar 30 min <span class="arrow">→</span>
           </a>
-          <a class="btn ghost" href="https://wa.me/5511957956411?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20agendar%20uma%20consulta." target="_blank" rel="noopener">
-            WhatsApp <span class="arrow">→</span>
+          <a class="btn" href="https://wa.me/5511957956411?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20agendar%20uma%20consulta." target="_blank" rel="noopener">
+            Conversar no WhatsApp <span class="arrow">→</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
-    <footer class="foot" data-screen-label="08 Footer">
+    <!-- ========== FAQ ========== -->
+    <section class="formato" id="faq">
       <div class="wrap">
-        <div class="foot-grid">
-          <div class="foot-brand">
-            <p class="name"><em>Adriano Diamarante</em></p>
-            <p>Psicólogo Clínico<br>Fenomenologia Existencial</p>
-            <p style="margin-top: 14px; color: var(--vv-teal-soft);">CRP 06/127613</p>
+        <header class="section-head">
+          <div class="eyebrow">
+            <span class="num"><em>05</em></span>
+            <span>Dúvidas frequentes</span>
           </div>
+          <div class="rule-track" aria-hidden="true"></div>
+        </header>
 
-          <div>
-            <h4>Agendar</h4>
-            <a href="https://calendar.app.google/eTKFVdGQUsaGByAk8" target="_blank" rel="noopener">Sessão 50 min</a>
-            <a href="https://calendar.app.google/3KWaMZpDLwRmodFK8" target="_blank" rel="noopener">Sessão 30 min</a>
-            <a href="https://wa.me/5511957956411?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20e%20agendar%20uma%20consulta." target="_blank" rel="noopener">WhatsApp</a>
-          </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Como é a primeira sessão?
+              <svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>É um encontro. Pergunto se é sua primeira experiência com terapia e você escolhe: falar livremente sobre você, ou ir direto ao que te trouxe. Ao final, faço uma devolutiva do que escutei e você leva dois dias para decidir, com calma, se quer continuar.</p>
+            </div>
+          </details>
 
-          <div>
-            <h4>Contato</h4>
-            <a href="mailto:adrianodiamarantepsi@gmail.com" style="word-break: break-all;">adrianodiamarantepsi@gmail.com</a>
-            <a href="https://wa.me/5511957956411" target="_blank" rel="noopener" style="margin-top:8px;">(11) 95795-6411</a>
-          </div>
+          <details class="faq-item">
+            <summary>A terapia é sigilosa?
+              <svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Sim. O atendimento online segue a Resolução CFP nº 006/2019, e seus dados são protegidos conforme a LGPD (Lei nº 13.709/2018). O sigilo só encontra limite em duas situações previstas em lei: risco de vida e determinação judicial.</p>
+            </div>
+          </details>
 
-          <div>
-            <h4>Acompanhar</h4>
-            <a href="https://www.instagram.com/adrianodiamarantepsi/?hl=pt" target="_blank" rel="noopener">@adrianodiamarantepsi</a>
-            <p style="margin-top: 8px; color: var(--vv-teal-soft);">Instagram</p>
-          </div>
-        </div>
+          <details class="faq-item">
+            <summary>Preciso de encaminhamento ou de um diagnóstico?
+              <svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Não. Basta o desejo — ainda que difuso — de se compreender melhor. Meu trabalho não parte de rótulos: parte da sua experiência, do que pesa e do que faz ou não faz sentido na sua vida hoje.</p>
+            </div>
+          </details>
 
-        <div class="foot-bottom">
-          <span>© 2026 · Adriano Diamarante · Todos os direitos reservados</span>
-          <span><em>Vivência</em> · Sistema editorial</span>
+          <details class="faq-item">
+            <summary>Para quem esse trabalho é indicado?
+              <svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Atendo pessoas a partir de 16 anos, especialmente quem vive crises de sentido: a percepção de estar há muito tempo no automático, vivendo pelo que os outros esperam.</p>
+              <p>Se o seu caso pedir outro tipo de cuidado — como demanda psiquiátrica central ou atendimento infantil — eu te oriento e encaminho para alguém de confiança. Você não sai sem direção.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Quanto tempo dura o processo?
+              <svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Varia de pessoa para pessoa. A alta acontece quando você recupera a capacidade de conduzir a própria vida com autonomia — e é uma decisão construída em conjunto, dentro da sessão. Você também é livre para encerrar quando desejar, sem pressão.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>E se eu precisar cancelar uma sessão?
+              <svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+            </summary>
+            <div class="faq-body">
+              <p>Sem problema — peço apenas que avise com 24 horas de antecedência, para que o horário possa ser reorganizado. É só mandar uma mensagem no WhatsApp.</p>
+            </div>
+          </details>
         </div>
       </div>
-    </footer>
+    </section>
 
   </main>
 
-  <!-- ========== TWEAKS PANEL ========== -->
-  <button class="tw-toggle" id="twToggle" type="button">
-    <em>Tweaks</em>
-  </button>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="brand-foot">
+          <em>Adriano Diamarante</em>
+          <span>Psicólogo Clínico · CRP 06/127613</span>
+        </div>
 
-  <aside class="tw-panel" id="twPanel" aria-label="Tweaks">
-    <header>
-      <h5><em>Tweaks</em></h5>
-      <button class="close-x" id="twClose" type="button" aria-label="Fechar">✕</button>
-    </header>
+        <div>
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#valores">Formato e valores</a></li>
+            <li><a href="#faq">Dúvidas frequentes</a></li>
+          </ul>
+        </div>
 
-    <div class="tw-row">
-      <div class="tw-label">Tema</div>
-      <div class="tw-seg" data-tweak="theme">
-        <button data-value="light">Claro</button>
-        <button data-value="dark">Escuro</button>
+        <div>
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="https://wa.me/5511957956411" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:adrianodiamarantepsi@gmail.com">adrianodiamarantepsi@gmail.com</a></li>
+            <li><a href="#agendar">Agendar sessão</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-crisis">
+        <strong>Se você está em crise ou em risco imediato:</strong> ligue para o CVV no <strong>188</strong> (ligação gratuita, 24h) ou procure o CAPS ou a emergência mais próxima. Este site não oferece atendimento de urgência.
+      </div>
+
+      <div class="footer-legal">
+        <span>© 2026 Adriano Diamarante de Oliveira Gomes · Todos os direitos reservados</span>
+        <span>Atendimento online conforme Resolução CFP nº 006/2019 · LGPD</span>
       </div>
     </div>
+  </footer>
 
-    <div class="tw-row">
-      <div class="tw-label">Retrato do hero</div>
-      <div class="tw-seg" data-tweak="heroShape">
-        <button data-value="oval">Oval</button>
-        <button data-value="fade">Fade</button>
-        <button data-value="stadium">Arco</button>
-        <button data-value="rect">Reta</button>
-      </div>
-    </div>
+<script>
+// 1. Detecta mobile e preferência por menos movimento
+const isMobile = window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <div class="tw-row">
-      <div class="tw-label">Densidade</div>
-      <div class="tw-seg" data-tweak="density">
-        <button data-value="comfy">Amplo</button>
-        <button data-value="compact">Compacto</button>
-      </div>
-    </div>
-  </aside>
+// 2. Registra ScrollTrigger se GSAP existir
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-  <script>
-    // ============= Tweaks: edit-mode bridge + persistence =============
-    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "theme": "light",
-      "heroShape": "fade",
-      "density": "comfy"
-    }/*EDITMODE-END*/;
-
-    let tweaks = { ...TWEAK_DEFAULTS };
-
-    function applyTweaks(){
-      document.body.setAttribute('data-theme', tweaks.theme || 'light');
-      const hp = document.querySelector('.hero-portrait');
-      const bp = document.querySelector('.book-portrait');
-      const shape = tweaks.heroShape || 'stadium';
-      if (hp) hp.setAttribute('data-shape', shape);
-      if (bp) bp.setAttribute('data-shape', shape);
-
-      if (tweaks.density === 'compact') {
-        document.documentElement.style.setProperty('--gutter', 'clamp(20px, 4vw, 56px)');
-      } else {
-        document.documentElement.style.removeProperty('--gutter');
-      }
-
-      // Highlight active buttons
-      document.querySelectorAll('.tw-seg').forEach(seg => {
-        const key = seg.getAttribute('data-tweak');
-        seg.querySelectorAll('button').forEach(b => {
-          b.classList.toggle('active', b.getAttribute('data-value') === tweaks[key]);
-        });
-      });
+// 3. Lenis só em desktop e se a lib carregou
+if (typeof Lenis !== 'undefined' && !isMobile && !reducedMotion) {
+  try {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      syncTouch: false,
+    });
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
     }
+  } catch (e) { /* scroll nativo continua funcionando */ }
+}
 
-    function setTweak(key, value){
-      tweaks[key] = value;
-      applyTweaks();
+// 4. Nav muda de fundo ao rolar
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// 5. Menu mobile
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+if (burger && menu) {
+  const closeMenu = () => {
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  };
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+}
+
+// 6. Animações GSAP
+if (typeof gsap !== 'undefined' && !reducedMotion) {
+
+  // Hero: headline kinetic (palavra por palavra) no load
+  if (typeof SplitType !== 'undefined') {
+    try {
+      const heroSplit = new SplitType('.hero-title', { types: 'words' });
+      gsap.from(heroSplit.words, {
+        opacity: 0, y: 30, duration: 1.2, stagger: 0.08,
+        ease: 'power3.out'
+      });
+    } catch (e) { /* headline fica estática */ }
+  }
+
+  gsap.from('.hero-welcome, .hero-actions, .hero-meta', {
+    opacity: 0, y: 24, duration: 0.9, stagger: 0.12, delay: 0.5, ease: 'power3.out'
+  });
+  gsap.from('.hero-portrait', {
+    opacity: 0, scale: 1.04, duration: 1.4, delay: 0.2, ease: 'power3.out'
+  });
+
+  if (typeof ScrollTrigger !== 'undefined') {
+
+    // Reveal staggered por seção
+    gsap.utils.toArray('#sobre, #como-funciona, #valores, #agendar, #faq').forEach(section => {
+      const items = section.querySelectorAll('.section-head, .body-text p, .step, .price-card, .format-item, .format-note, .sub, .agendar-actions, .faq-item, .signature');
+      if (!items.length) return;
+      gsap.from(items, {
+        opacity: 0, y: 40, duration: 0.8, stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' }
+      });
+    });
+
+    // Headlines de seção: kinetic com SplitType
+    if (typeof SplitType !== 'undefined') {
       try {
-        window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: value } }, '*');
-      } catch(e){}
+        gsap.utils.toArray('#sobre .h-section, .agendar .h-section').forEach(el => {
+          const split = new SplitType(el, { types: 'words' });
+          gsap.from(split.words, {
+            opacity: 0, y: 30, duration: 0.8, stagger: 0.06,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 85%' }
+          });
+        });
+      } catch (e) { /* headlines ficam estáticas */ }
     }
 
-    // Wire up segmented buttons
-    document.querySelectorAll('.tw-seg').forEach(seg => {
-      const key = seg.getAttribute('data-tweak');
-      seg.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => setTweak(key, btn.getAttribute('data-value')));
+    // Manifesto: pin + scrub — só desktop
+    if (!isMobile) {
+      const manifesto = document.getElementById('manifesto');
+      if (manifesto) {
+        manifesto.classList.add('manifesto-pinned');
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#manifesto',
+            start: 'top top',
+            end: '+=2400',
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1
+          }
+        });
+
+        tl.to('.m-1', { opacity: 0, y: -40, duration: 1 }, '+=0.6')
+          .from('.m-2', { opacity: 0, y: 40, duration: 1 }, '<0.2')
+          .to('.m-2', { opacity: 0, y: -40, duration: 1 }, '+=0.6')
+          .from('.m-3', { opacity: 0, y: 40, duration: 1 }, '<0.2')
+          .to('.m-3', { opacity: 0, y: -40, duration: 1 }, '+=0.6')
+          .from('.m-final', { opacity: 0, scale: 0.96, duration: 1.2 }, '<0.2')
+          .to({}, { duration: 0.8 });
+      }
+    } else {
+      // Mobile: frases entram em cascata, sem pin
+      gsap.from('.m-phrase', {
+        opacity: 0, y: 30, duration: 0.8, stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#manifesto', start: 'top 75%' }
       });
-    });
-
-    // Toggle / close panel
-    const tToggle = document.getElementById('twToggle');
-    const tPanel = document.getElementById('twPanel');
-    const tClose = document.getElementById('twClose');
-    let editAvailable = false;
-    function openPanel(){ tPanel.classList.add('open'); tToggle.classList.remove('show'); }
-    function closePanel(){
-      tPanel.classList.remove('open');
-      if (editAvailable) tToggle.classList.add('show');
-      try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch(e){}
     }
-    tToggle.addEventListener('click', openPanel);
-    tClose.addEventListener('click', closePanel);
-
-    // Listen for host edit-mode messages BEFORE announcing availability
-    window.addEventListener('message', (e) => {
-      const d = e.data;
-      if (!d || typeof d !== 'object') return;
-      if (d.type === '__activate_edit_mode') { editAvailable = true; openPanel(); }
-      if (d.type === '__deactivate_edit_mode') { closePanel(); tToggle.classList.remove('show'); }
-    });
-    // Now announce
-    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e){}
-
-    // Apply initial
-    applyTweaks();
-  </script>
-
+  }
+}
+</script>
 </body>
 </html>
